@@ -1,0 +1,4 @@
+nebulaidl>=1.10.0
+-e file:../../.#egg=nebulakitplugins-pod&subdirectory=plugins/nebulakit-k8s-pod
+-e file:../../.#egg=nebulakitplugins-spark&subdirectory=plugins/nebulakit-spark
+-e file:../../.#egg=nebulakitplugins-awsbatch&subdirectory=plugins/nebulakit-aws-batch

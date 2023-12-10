@@ -1,0 +1,22 @@
+FROM python:3.9-slim-buster
+
+MAINTAINER Nebula Team <users@nebula.org>
+LABEL org.opencontainers.image.source=https://github.com/nebulaclouds/nebulakit
+
+ARG VERSION
+
+RUN apt-get update && apt-get install build-essential -y
+
+RUN pip install prometheus-client
+RUN pip install --no-cache-dir -U nebulakit==$VERSION \
+  nebulakitplugins-bigquery==$VERSION \
+  nebulakitplugins-airflow==$VERSION \
+  nebulakitplugins-mmcloud==$VERSION \
+  nebulakitplugins-spark==$VERSION \
+  nebulakitplugins-snowflake==$VERSION \
+  && apt-get clean autoclean \
+  && apt-get autoremove --yes \
+  && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
+  && :
+
+CMD pynebula serve agent --port 8000

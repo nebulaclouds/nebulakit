@@ -1,0 +1,4 @@
+admin:
+  endpoint: dns:///nebula.mycorp.io
+  authType: Pkce
+  insecure: false
