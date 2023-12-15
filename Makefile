@@ -35,9 +35,6 @@ fmt:
 lint: ## Run linters
 	mypy nebulakit/core
 	mypy nebulakit/types
-#	allow-empty-bodies: Allow empty body in function.
-#	disable-error-code="annotation-unchecked": Remove the warning "By default the bodies of untyped functions are not checked".
-#	Mypy raises a warning because it cannot determine the type from the dataclass, despite we specified the type in the dataclass.
 	mypy --allow-empty-bodies --disable-error-code="annotation-unchecked" tests/nebulakit/unit/core
 	pre-commit run --all-files
 
@@ -54,8 +51,6 @@ unit_test_codecov:
 
 .PHONY: unit_test
 unit_test:
-	# Skip tensorflow tests and run them with the necessary env var set so that a working (albeit slower)
-	# library is used to serialize/deserialize protobufs is used.
 	$(PYTEST) -m "not sandbox_test" tests/nebulakit/unit/ --ignore=tests/nebulakit/unit/extras/tensorflow --ignore=tests/nebulakit/unit/models ${CODECOV_OPTS} && \
 		PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python $(PYTEST) tests/nebulakit/unit/extras/tensorflow ${CODECOV_OPTS}
 
