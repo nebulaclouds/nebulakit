@@ -87,9 +87,9 @@ docker==6.1.3
     # via nebulakit
 docstring-parser==0.15
     # via nebulakit
-nebulaidl==1.5.13
+nebulaidl==1.0.0
     # via nebulakit
-nebulakit==1.8.2
+nebulakit==1.0.0
     # via -r requirements.in
 fonttools==4.41.1
     # via matplotlib

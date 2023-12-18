@@ -268,7 +268,7 @@ flask==2.3.3
     # via mlflow
 flatbuffers==23.5.26
     # via tensorflow
-nebulaidl==1.10.0
+nebulaidl==1.0.0
     # via nebulakit
 fonttools==4.42.1
     # via matplotlib
