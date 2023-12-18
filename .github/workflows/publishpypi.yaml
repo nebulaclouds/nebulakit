@@ -1,0 +1,44 @@
+name: "Publish pypi Artifacts"
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Nebula Protocol
+        uses: actions/checkout@v3
+
+      - name: Generate Development Version
+        run: |
+          cat .env
+          CURRENT_VERSION=$(grep VERSION .env)
+          sed -i -e "s/$CURRENT_VERSION/$CURRENT_VERSION.dev$(date +%s)/g" .env
+          cat .env
+
+      - name: Setup JFrog CLI
+        uses: jfrog/setup-jfrog-cli@v3
+        env:
+          JF_URL: ${{ secrets.JF_URL }}
+          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+
+      - name: Set CLI Config
+        run: jf pip-config --global=true --repo-resolve=nebula-pypi
+
+      - name: Package the project
+        run: python -m pip install python-dotenv && python setup.py sdist bdist_wheel
+
+      - name: Publish
+        run: jf rt upload dist/ nebula-pypi/
+
+      - name: Publish Build info With JFrog CLI
+        run: |
+          # Collect environment variables for the build
+          jf rt build-collect-env
+          # Collect VCS details from git and add them to the build
+          jf rt build-add-git
+          # Publish build info
+          jf rt build-publish
