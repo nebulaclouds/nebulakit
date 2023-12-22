@@ -4,7 +4,7 @@ PLUGIN_NAME = "pandera"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.3.0b2,<2.0.0", "pandera>=0.7.1"]
+plugin_requires = ["nebulakit", "pandera>=0.7.1"]
 
 __version__ = "0.0.0+develop"
 

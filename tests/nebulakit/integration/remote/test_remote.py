@@ -286,7 +286,7 @@ def test_execute_python_workflow_list_of_floats(register):
     assert execution.outputs["o0"] == "[-1.1, 0.12345]"
 
 
-@pytest.mark.skip(reason="Waiting for https://github.com/nebulaclouds/nebulactl/pull/440 to land")
+@pytest.mark.skip()
 def test_execute_sqlite3_task(register):
     remote = NebulaRemote(Config.auto(config_file=CONFIG), PROJECT, DOMAIN)
 

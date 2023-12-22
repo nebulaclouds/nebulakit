@@ -5,11 +5,11 @@ PLUGIN_NAME = "great_expectations"
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
 plugin_requires = [
-    "nebulakit>=1.5.0,<2.0.0",
+    "nebulakit",
+    "nebulakitplugins-spark",
     "great-expectations>=0.13.30",
     "sqlalchemy>=1.4.23,<2.0.0",
     "pyspark==3.3.1",
-    "nebulakitplugins-spark>=1.5.0,<2.0.0",
     "s3fs<2023.6.0",
 ]
 

@@ -4,7 +4,7 @@ PLUGIN_NAME = "identity_aware_proxy"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["click", "google-cloud-secret-manager", "google-auth", "nebulakit>=1.10"]
+plugin_requires = ["click", "google-cloud-secret-manager", "google-auth", "nebulakit"]
 
 __version__ = "0.0.0+develop"
 

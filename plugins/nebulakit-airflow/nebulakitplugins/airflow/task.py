@@ -216,5 +216,6 @@ BaseOperator.__new__ = _nebula_operator
 BaseOperator.xcom_push = _nebula_xcom_push
 # Monkey patch the xcom_push method to store the data in the Nebula context.
 # Create a dummy DAG to avoid Airflow errors. This DAG is not used.
-# TODO: Add support using Airflow DAG in Nebula workflow. We can probably convert the Airflow DAG to a Nebula subworkflow.
+# TODO: Add support using Airflow DAG in Nebula workflow.
+# We can probably convert the Airflow DAG to a Nebula subworkflow.
 BaseSensorOperator.dag = DAG(dag_id="nebula_dag")

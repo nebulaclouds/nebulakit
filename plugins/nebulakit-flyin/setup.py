@@ -4,7 +4,7 @@ PLUGIN_NAME = "flyin"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.1.0b0,<2.0.0", "jupyter"]
+plugin_requires = ["nebulakit", "jupyter"]
 
 __version__ = "0.0.0+develop"
 

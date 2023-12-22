@@ -6,7 +6,7 @@ PLUGIN_NAME = "dolt"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.3.0b2,<2.0.0", "dolt_integrations>=0.1.5", "networkx<3.2; python_version<'3.9'"]
+plugin_requires = ["nebulakit", "dolt_integrations>=0.1.5", "networkx<3.2; python_version<'3.9'"]
 dev_requires = ["pytest-mock>=3.6.1"]
 
 __version__ = "0.0.0+develop"
@@ -23,8 +23,8 @@ class PostDevelopCommand(develop):
 setup(
     name=microlib_name,
     version=__version__,
-    author="dolthub",
-    author_email="max@dolthub.com",
+    author="nebulaclouds",
+    author_email="admin@nebula.org",
     description="Dolt plugin for nebulakit",
     namespace_packages=["nebulakitplugins"],
     packages=[f"nebulakitplugins.{PLUGIN_NAME}"],

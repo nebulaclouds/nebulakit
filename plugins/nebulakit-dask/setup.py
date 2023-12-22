@@ -5,8 +5,8 @@ PLUGIN_NAME = "dask"
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
 plugin_requires = [
-    "nebulaidl>=1.3.2",
-    "nebulakit>=1.3.0b2,<2.0.0",
+    "nebulaidl",
+    "nebulakit",
     "dask[distributed]>=2022.10.2",
 ]
 

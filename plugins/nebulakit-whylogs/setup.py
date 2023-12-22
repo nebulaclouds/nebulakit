@@ -4,15 +4,15 @@ PLUGIN_NAME = "whylogs"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.3.0b2,<2.0.0", "whylogs[viz]>=1.1.16"]
+plugin_requires = ["nebulakit", "whylogs[viz]>=1.1.16"]
 
 __version__ = "0.0.0+develop"
 
 setup(
     name=microlib_name,
     version=__version__,
-    author="whylabs",
-    author_email="support@whylabs.ai",
+    author="nebulaclouds",
+    author_email="admin@nebula.org",
     description="Enable the use of whylogs profiles to be used in nebula tasks to get aggregate statistics about data.",
     url="https://github.com/nebulaclouds/nebulakit/tree/master/plugins/nebulakit-whylogs",
     long_description=open("README.md").read(),

@@ -5,7 +5,7 @@ PLUGIN_NAME = "dbt"
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
 plugin_requires = [
-    "nebulakit>=1.3.0b2,<2.0.0",
+    "nebulakit",
     "dbt-core>=1.0.0",
 ]
 

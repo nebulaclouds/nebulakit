@@ -4,7 +4,7 @@ PLUGIN_NAME = "duckdb"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.3.0b2,<2.0.0", "duckdb"]
+plugin_requires = ["nebulakit", "duckdb"]
 
 __version__ = "0.0.0+develop"
 

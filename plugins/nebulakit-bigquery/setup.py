@@ -4,7 +4,7 @@ PLUGIN_NAME = "bigquery"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.3.0b2,<2.0.0", "google-cloud-bigquery"]
+plugin_requires = ["nebulakit", "google-cloud-bigquery"]
 
 __version__ = "0.0.0+develop"
 

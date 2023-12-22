@@ -4,7 +4,7 @@ PLUGIN_NAME = "awsbatch"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.3.0b2,<2.0.0"]
+plugin_requires = ["nebulakit"]
 
 __version__ = "0.0.0+develop"
 

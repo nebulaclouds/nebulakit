@@ -4,7 +4,7 @@ PLUGIN_NAME = "onnxpytorch"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.3.0b2,<2.0.0", "torch>=1.11.0", "onnx-pytorch", "networkx<3.2; python_version<'3.9'"]
+plugin_requires = ["nebulakit", "torch>=1.11.0", "onnx-pytorch", "networkx<3.2; python_version<'3.9'"]
 
 __version__ = "0.0.0+develop"
 

@@ -4,15 +4,15 @@ PLUGIN_NAME = "sqlalchemy"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.3.0b2,<2.0.0", "sqlalchemy>=1.4.7"]
+plugin_requires = ["nebulakit", "sqlalchemy>=1.4.7"]
 
 __version__ = "0.0.0+develop"
 
 setup(
     name=microlib_name,
     version=__version__,
-    author="dolthub",
-    author_email="max@dolthub.com",
+    author="nebulaclouds",
+    author_email="admin@nebula.org",
     description="SQLAlchemy plugin for nebulakit",
     namespace_packages=["nebulakitplugins"],
     packages=[f"nebulakitplugins.{PLUGIN_NAME}"],

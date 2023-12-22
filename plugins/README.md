@@ -75,9 +75,9 @@ microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 # microlib_name = f"nebulakitplugins-data-{PLUGIN_NAME}"
 
 # TODO add additional requirements
-plugin_requires = ["nebulakit>=1.1.0b0,<2.0.0, "<other requirements>"]
+plugin_requires = ["nebulakit>=1.0.0,<2.0.0, "<other requirements>"]
 
-__version__ = "0.0.0+develop"
+__version__ = "1.0.0"
 
 setup(
     name=microlib_name,

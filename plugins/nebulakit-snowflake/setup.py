@@ -4,7 +4,7 @@ PLUGIN_NAME = "snowflake"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.3.0b2,<2.0.0", "snowflake-connector-python>=3.1.0"]
+plugin_requires = ["nebulakit", "snowflake-connector-python>=3.1.0"]
 
 __version__ = "0.0.0+develop"
 

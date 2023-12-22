@@ -4,7 +4,7 @@ PLUGIN_NAME = "kftensorflow"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulaidl>=1.10.0", "nebulakit>=1.6.1"]
+plugin_requires = ["nebulaidl", "nebulakit"]
 
 __version__ = "0.0.0+develop"
 

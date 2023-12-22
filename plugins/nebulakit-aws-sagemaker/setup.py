@@ -4,7 +4,7 @@ PLUGIN_NAME = "awssagemaker"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.3.0b2,<2.0.0", "sagemaker-training>=3.6.2,<4.0.0", "retry2==0.9.5"]
+plugin_requires = ["nebulakit", "sagemaker-training>=3.6.2,<4.0.0", "retry2==0.9.5"]
 
 __version__ = "0.0.0+develop"
 

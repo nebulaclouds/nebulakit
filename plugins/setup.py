@@ -9,7 +9,6 @@ PACKAGE_NAME = "nebulakitplugins-parent"
 
 __version__ = "0.0.0+develop"
 
-# Please maintain an alphabetical order in the following list
 SOURCES = {
     "nebulakitplugins-athena": "nebulakit-aws-athena",
     "nebulakitplugins-awsbatch": "nebulakit-aws-batch",

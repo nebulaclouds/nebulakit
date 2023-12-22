@@ -4,7 +4,7 @@ PLUGIN_NAME = "spark"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.3.0b2,<2.0.0", "pyspark>=3.0.0", "aiohttp", "nebulaidl>=1.10.0"]
+plugin_requires = ["nebulakit", "pyspark>=3.0.0", "aiohttp", "nebulaidl"]
 
 __version__ = "0.0.0+develop"
 

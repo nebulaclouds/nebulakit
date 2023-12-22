@@ -4,16 +4,16 @@ PLUGIN_NAME = "mmcloud"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.9.1,<2.0.0"]
+plugin_requires = ["nebulakit"]
 
 __version__ = "0.0.0+develop"
 
 setup(
     name=microlib_name,
     version=__version__,
-    author="Edwin Yu, Helen Zhang",
-    author_email="helen.zhang@memverge.com",
-    description="MemVerge Nebula plugin",
+    author="nebulaclouds",
+    author_email="admin@nebula.org",
+    description="mmcloud Nebula plugin",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     namespace_packages=["nebulakitplugins"],

@@ -6,7 +6,7 @@ microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
 plugin_requires = [
     "apache-airflow",
-    "nebulakit>=1.9.0",
+    "nebulakit",
 ]
 
 __version__ = "0.0.0+develop"

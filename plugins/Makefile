@@ -14,7 +14,7 @@ publish_all_plugins:
 all_requirements:
 	./run_all_plugins.sh pip-compile requirements.in --upgrade --verbose
 
-PLACEHOLDER := "__version__\ =\ \"0.0.0+develop\""
+PLACEHOLDER := "__version__\ =\ \"0.0.0\""
 VERSION_FILE := "setup.py"
 
 .PHONY: update_all_versions

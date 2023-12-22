@@ -5,7 +5,7 @@ PLUGIN_NAME = "huggingface"
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
 plugin_requires = [
-    "nebulakit>=1.3.0b2,<2.0.0",
+    "nebulakit",
     "datasets>=2.4.0",
 ]
 

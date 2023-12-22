@@ -4,7 +4,7 @@ PLUGIN_NAME = "pydantic"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["nebulakit>=1.7.0b0,<2.0.0", "pydantic"]
+plugin_requires = ["nebulakit", "pydantic"]
 
 __version__ = "0.0.0+develop"
 

@@ -4,7 +4,7 @@ PLUGIN_NAME = "ray"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["ray[default]", "nebulakit>=1.3.0b2,<2.0.0", "nebulaidl>=1.1.10"]
+plugin_requires = ["ray[default]", "nebulakit", "nebulaidl"]
 
 __version__ = "0.0.0+develop"
 

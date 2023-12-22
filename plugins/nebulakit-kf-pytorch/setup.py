@@ -4,7 +4,7 @@ PLUGIN_NAME = "kfpytorch"
 
 microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
-plugin_requires = ["cloudpickle", "nebulaidl>=1.5.1", "nebulakit>=1.6.1"]
+plugin_requires = ["cloudpickle", "nebulaidl", "nebulakit"]
 
 __version__ = "0.0.0+develop"
 
