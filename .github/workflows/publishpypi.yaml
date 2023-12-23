@@ -22,7 +22,12 @@ jobs:
         run: jf pip-config --global=true --repo-resolve=nebula-pypi
 
       - name: Package the project
-        run: make -C plugins build_all_plugins && rm -rf libs/ && mkdir libs && cp -r $(find . -print | grep -i dist/) libs/python -m pip install build twine setuptools setuptools_scm wheel && python -m build
+        run: |
+          make -C plugins build_all_plugins
+          rm -rf libs/ && mkdir libs
+          cp -r $(find . -print | grep -i dist/) libs/ 
+          python -m pip install build twine setuptools setuptools_scm wheel 
+          python -m build
 
       - name: Publish
         run: jf rt upload dist/ nebula-pypi/
