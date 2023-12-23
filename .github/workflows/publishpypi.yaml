@@ -9,19 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: "0"
-
-      - name: Set up Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: "3.x"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install build twine setuptools setuptools_scm wheel
+      - name: Checkout Nebula Protocol
+        uses: actions/checkout@v3
 
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v3
@@ -33,16 +22,10 @@ jobs:
         run: jf pip-config --global=true --repo-resolve=nebula-pypi
 
       - name: Package the project
-        run: python -m build
-
-#      - name: Build all Plugins and publish
-#        run: |
-#          make -C plugins build_all_plugins
-#          rm -rf libs/ && mkdir libs && cp -r $(find . -print | grep -i dist/) libs/
-#          ls -la libs/
+        run: python -m pip install build twine setuptools setuptools_scm wheel && python -m build
 
       - name: Publish
-        run: jf rt upload dist/* nebula-pypi/
+        run: jf rt upload dist/ nebula-pypi/
 
       - name: Publish Build info With JFrog CLI
         run: |
@@ -52,3 +35,60 @@ jobs:
           jf rt build-add-git
           # Publish build info
           jf rt build-publish
+
+
+
+#name: "Publish pypi Artifacts"
+#on:
+#  push:
+#    branches:
+#      - master
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v4
+#        with:
+#          fetch-depth: "0"
+#
+#      - name: Set up Python
+#        uses: actions/setup-python@v1
+#        with:
+#          python-version: "3.x"
+#
+#      - name: Install dependencies
+#        run: |
+#          python -m pip install --upgrade pip
+#          pip install build twine setuptools setuptools_scm wheel
+#
+#      - name: Setup JFrog CLI
+#        uses: jfrog/setup-jfrog-cli@v3
+#        env:
+#          JF_URL: ${{ secrets.JF_URL }}
+#          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+#
+#      - name: Set CLI Config
+#        run: jf pip-config --global=true --repo-resolve=nebula-pypi
+#
+#      - name: Package the project
+#        run: python -m build
+#
+##      - name: Build all Plugins and publish
+##        run: |
+##          make -C plugins build_all_plugins
+##          rm -rf libs/ && mkdir libs && cp -r $(find . -print | grep -i dist/) libs/
+##          ls -la libs/
+#
+#      - name: Publish
+#        run: jf rt upload dist/* nebula-pypi/
+#
+#      - name: Publish Build info With JFrog CLI
+#        run: |
+#          # Collect environment variables for the build
+#          jf rt build-collect-env
+#          # Collect VCS details from git and add them to the build
+#          jf rt build-add-git
+#          # Publish build info
+#          jf rt build-publish
