@@ -40,3 +40,4 @@ archive/
 replacer.py
 **/dist/*
 **/build/*
+libs/*
