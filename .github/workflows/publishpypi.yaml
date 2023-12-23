@@ -35,14 +35,14 @@ jobs:
       - name: Package the project
         run: python -m build
 
-      - name: Build all Plugins and publish
-        run: |
-          make -C plugins build_all_plugins
-          rm -rf libs/ && mkdir libs && cp -r $(find . -print | grep -i dist/) libs/
-          ls -la libs/
+#      - name: Build all Plugins and publish
+#        run: |
+#          make -C plugins build_all_plugins
+#          rm -rf libs/ && mkdir libs && cp -r $(find . -print | grep -i dist/) libs/
+#          ls -la libs/
 
       - name: Publish
-        run: jf rt upload libs/* nebula-pypi/
+        run: jf rt upload dist/* nebula-pypi/
 
       - name: Publish Build info With JFrog CLI
         run: |
