@@ -37,7 +37,7 @@ jobs:
 
       - name: Build all Plugins and publish
         run: |
-          ls -la
+          ls -la dist/
 #          make -C plugins build_all_plugins
 #          jf rt upload dist/* nebula-pypi/
 #          make -C plugins publish_all_plugins
