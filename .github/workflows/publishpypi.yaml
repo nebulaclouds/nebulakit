@@ -40,11 +40,9 @@ jobs:
           make -C plugins build_all_plugins
           rm -rf libs/ && mkdir libs && cp -r $(find . -print | grep -i dist/) libs/
           ls -la libs/
-#          jf rt upload dist/* nebula-pypi/
-#          make -C plugins publish_all_plugins
 
       - name: Publish
-        run: jf rt upload dist/* nebula-pypi/
+        run: jf rt upload libs/* nebula-pypi/
 
       - name: Publish Build info With JFrog CLI
         run: |
