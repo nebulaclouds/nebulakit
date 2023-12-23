@@ -8,7 +8,7 @@ build_all_plugins:
 
 .PHONY: publish_all_plugins
 publish_all_plugins:
-	jf rt upload */dist/*
+	jf rt upload */dist/* nebula-pypi/
 
 .PHONY: all_requirements
 all_requirements:
