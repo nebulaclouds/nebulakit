@@ -9,7 +9,7 @@ plugin_requires = [
     "nebulakit",
 ]
 
-__version__ = "0.0.0+develop"
+__version__ = "1.0.0"
 
 setup(
     name=microlib_name,

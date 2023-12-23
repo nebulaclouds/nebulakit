@@ -6,7 +6,7 @@ microlib_name = f"nebulakitplugins-data-{PLUGIN_NAME}"
 
 plugin_requires = []
 
-__version__ = "0.0.0+develop"
+__version__ = "1.0.0"
 
 setup(
     name=microlib_name,

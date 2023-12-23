@@ -9,7 +9,7 @@ microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 plugin_requires = ["nebulakit", "dolt_integrations>=0.1.5", "networkx<3.2; python_version<'3.9'"]
 dev_requires = ["pytest-mock>=3.6.1"]
 
-__version__ = "0.0.0+develop"
+__version__ = "1.0.0"
 
 
 class PostDevelopCommand(develop):

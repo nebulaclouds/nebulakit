@@ -6,7 +6,7 @@ microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
 plugin_requires = ["nebulakit", "skl2onnx>=1.10.3", "networkx<3.2; python_version<'3.9'"]
 
-__version__ = "0.0.0+develop"
+__version__ = "1.0.0"
 
 setup(
     name=f"nebulakitplugins-{PLUGIN_NAME}",

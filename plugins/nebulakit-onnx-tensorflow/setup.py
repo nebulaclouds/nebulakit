@@ -6,7 +6,7 @@ microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 
 plugin_requires = ["nebulakit", "tf2onnx>=1.9.3", "tensorflow>=2.7.0"]
 
-__version__ = "0.0.0+develop"
+__version__ = "1.0.0"
 
 setup(
     name=f"nebulakitplugins-{PLUGIN_NAME}",

@@ -7,7 +7,7 @@ microlib_name = f"nebulakitplugins-{PLUGIN_NAME}"
 # TODO: support mlflow 2.0+
 plugin_requires = ["nebulakit", "plotly", "mlflow<2.0.0"]
 
-__version__ = "0.0.0+develop"
+__version__ = "1.0.0"
 
 setup(
     name=microlib_name,
