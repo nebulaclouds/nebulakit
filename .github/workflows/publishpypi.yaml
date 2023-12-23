@@ -41,7 +41,7 @@ jobs:
 #          make -C plugins publish_all_plugins
 
       - name: Publish
-        run: jf rt upload dist/ nebula-pypi/
+        run: jf rt upload */dist/* nebula-pypi/
 
       - name: Publish Build info With JFrog CLI
         run: |
