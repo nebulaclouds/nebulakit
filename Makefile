@@ -62,7 +62,6 @@ test_serialization_codecov:
 test_serialization:
 	$(PYTEST) tests/nebulakit/unit/models ${CODECOV_OPTS}
 
-
 .PHONY: integration_test_codecov
 integration_test_codecov:
 	$(MAKE) CODECOV_OPTS="--cov=./ --cov-report=xml --cov-append" integration_test
@@ -82,7 +81,6 @@ ${MOCK_NEBULA_REPO}/requirements.txt: ${MOCK_NEBULA_REPO}/requirements.in instal
 .PHONY: requirements
 requirements: doc-requirements.txt ${MOCK_NEBULA_REPO}/requirements.txt ## Compile requirements
 
-# TODO: Change this in the future to be all of nebulakit
 .PHONY: coverage
 coverage:
 	coverage run -m pytest tests/nebulakit/unit/core nebulakit/types -m "not sandbox_test"
