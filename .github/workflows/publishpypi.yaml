@@ -37,18 +37,19 @@ jobs:
 
       - name: Build all Plugins and publish
         run: |
-          make -C plugins build_all_plugins
-          jf rt upload dist/* nebula-pypi/
-          make -C plugins publish_all_plugins
+          ls -la
+#          make -C plugins build_all_plugins
+#          jf rt upload dist/* nebula-pypi/
+#          make -C plugins publish_all_plugins
 
 #      - name: Publish
 #        run: jf rt upload dist/* nebula-pypi/
 
-      - name: Publish Build info With JFrog CLI
-        run: |
-          # Collect environment variables for the build
-          jf rt build-collect-env
-          # Collect VCS details from git and add them to the build
-          jf rt build-add-git
-          # Publish build info
-          jf rt build-publish
+#      - name: Publish Build info With JFrog CLI
+#        run: |
+#          # Collect environment variables for the build
+#          jf rt build-collect-env
+#          # Collect VCS details from git and add them to the build
+#          jf rt build-add-git
+#          # Publish build info
+#          jf rt build-publish
