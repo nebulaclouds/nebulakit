@@ -24,13 +24,13 @@ jobs:
       - name: Package the project
         run: |
           make -C plugins build_all_plugins
-          rm -rf libs/ && mkdir libs
-          cp -r $(find . -print | grep -i dist/) libs/ 
           python -m pip install build twine setuptools setuptools_scm wheel 
           python -m build
+          rm -rf libs/ && mkdir libs
+          cp -r $(find . -print | grep -i dist/) libs/ 
 
       - name: Publish
-        run: jf rt upload dist/ nebula-pypi/
+        run: jf rt upload libs/ nebula-pypi/
 
       - name: Publish Build info With JFrog CLI
         run: |
