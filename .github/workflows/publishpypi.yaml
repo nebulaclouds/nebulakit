@@ -27,7 +27,7 @@ jobs:
           python -m pip install build twine setuptools setuptools_scm wheel 
           python -m build
           rm -rf libs/ && mkdir libs
-          cp -r $(find . -print | grep -i dist/) dist/ 
+          yes | cp -rf $(find . -print | grep -i dist/) dist/ 
 
       - name: Publish
         run: jf rt upload dist/ nebula-pypi/
