@@ -28,7 +28,7 @@ jobs:
         run: |
           sudo apt-get install python3-sphinx          
           pip install \
-            --index https://$JFROG_USER:$JFROG_PASSWORD@streamlineio.jfrog.io/artifactory/api/pypi/nebula-pypi/simple \
+            --index https://${{ secrets.JFROG_USER}}:${{ secrets.JFROG_PASSWORD }}@streamlineio.jfrog.io/artifactory/api/pypi/nebula-pypi/simple \
             --extra-index-url https://pypi.python.org/simple \
             -r doc-requirements.txt
           cd docs && SPHINXOPTS="-W" make html
