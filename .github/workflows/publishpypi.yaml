@@ -91,14 +91,18 @@ jobs:
           username: ${{ secrets.JFROG_USER}}
           password: ${{ secrets.JFROG_PASSWORD }}
 
-#      - name: Prepare Nebulakit Image Names
-#        id: nebulakit-names
-#        uses: docker/metadata-action@v3
-#        with:
-#          images: |
-#            ghcr.io/${{ github.repository_owner }}/nebulakit
-#          tags: |
-#            py${{ matrix.python-version }}-latest
+      - name: Prepare Nebulakit Image Names
+        id: nebulakit-names
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            streamlineio.jfrog.io/nebula-docker/nebulakit
+          tags: |
+            py${{ matrix.python-version }}-latest
+
+
+#        docker tag <IMAGE_ID> streamlineio.jfrog.io/nebula-docker/<DOCKER_IMAGE>:<DOCKER_TAG>
+#        docker push streamlineio.jfrog.io/nebula-docker/<DOCKER_IMAGE>:<DOCKER_TAG>
 #
 #      - name: Build & Push Nebulakit Python${{ matrix.python-version }} Docker Image to Github Registry
 #        uses: docker/build-push-action@v2
@@ -109,7 +113,7 @@ jobs:
 #          tags: ${{ steps.nebulakit-names.outputs.tags }}
 #          build-args: |
 #            VERSION=${{ needs.deploy.outputs.version }}
-#            DOCKER_IMAGE=ghcr.io/${{ github.repository_owner }}/nebulakit:py${{ matrix.python-version }}-${{ needs.deploy.outputs.version }}
+#            DOCKER_IMAGE=streamlineio.jfrog.io/nebula-docker/nebulakit:py${{ matrix.python-version }}-${{ needs.deploy.outputs.version }}
 #            PYTHON_VERSION=${{ matrix.python-version }}
 #          file: Dockerfile
 #          cache-from: type=gha
