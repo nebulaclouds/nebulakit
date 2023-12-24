@@ -12,11 +12,11 @@ ARG DOCKER_IMAGE
 
 RUN apt-get update
 RUN apt-get dist-upgrade -y
-RUN apt-get install -y curl
+RUN apt-get install -y curl rsync
 RUN curl -fL https://install-cli.jfrog.io | sh
+
 #RUN jf pipc --global --repo-resolve="nebula-pypi"
 #RUN jf pip install nebulakit
-
 
 RUN rsync -av --exclude='packages/' ./ packages/
 RUN ls -la packages/
