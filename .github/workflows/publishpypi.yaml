@@ -118,6 +118,8 @@ jobs:
             VERSION=${{ needs.deploy.outputs.version }}
             DOCKER_IMAGE=streamlineio.jfrog.io/nebula-docker/nebulakit:py${{ matrix.python-version }}-${{ needs.deploy.outputs.version }}
             PYTHON_VERSION=${{ matrix.python-version }}
+            JFROG_USER=${{ secrets.JFROG_USER}}
+            JFROG_PASSWORD=${{ secrets.JFROG_PASSWORD }}
           file: Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
