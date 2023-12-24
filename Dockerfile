@@ -11,9 +11,12 @@ ARG VERSION
 ARG DOCKER_IMAGE
 
 RUN apt-get update && apt-get install build-essential -y \
-    && pip install --no-cache-dir -U nebulakit==$VERSION \
-        nebulakitplugins-pod==$VERSION \
-        nebulakitplugins-deck-standard==$VERSION \
+    && pip install --no-cache-dir -U nebulakit \
+#    && pip install --no-cache-dir -U nebulakit==$VERSION \
+#        nebulakitplugins-pod==$VERSION \
+#        nebulakitplugins-deck-standard==$VERSION \
+        nebulakitplugins-pod \
+        nebulakitplugins-deck-standard \
         scikit-learn \
     && apt-get clean autoclean \
     && apt-get autoremove --yes \
