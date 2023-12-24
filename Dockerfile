@@ -11,7 +11,7 @@ ARG VERSION
 ARG DOCKER_IMAGE
 
 RUN curl -fL https://install-cli.jfrog.io | sh
-RUN jfrog rt
+RUN #jfrog rt
 
 #RUN apt-get update && apt-get install build-essential -y \
 #    && pip install --no-cache-dir -U nebulakit \
