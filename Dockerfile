@@ -19,25 +19,20 @@ RUN curl -fL https://install-cli.jfrog.io | sh
 #RUN jf pip install nebulakit
 
 COPY ./ packages/
-RUN #rsync -av --exclude='packages/' ./ packages/
-RUN ls -la packages/
 
-#RUN apt-get update && apt-get install build-essential -y \
-#    && pip install --no-cache-dir -U nebulakit \
-##    && pip install --no-cache-dir -U nebulakit==$VERSION \
-##        nebulakitplugins-pod==$VERSION \
-##        nebulakitplugins-deck-standard==$VERSION \
-#        nebulakitplugins-pod \
-#        nebulakitplugins-deck-standard \
-#        scikit-learn \
-#    && apt-get clean autoclean \
-#    && apt-get autoremove --yes \
-#    && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
-#    && useradd -u 1000 nebulakit \
-#    && chown nebulakit: /root \
-#    && chown nebulakit: /home \
-#    && :
-#
-#USER nebulakit
-#
-#ENV NEBULA_INTERNAL_IMAGE "$DOCKER_IMAGE"
+RUN apt-get update && apt-get install build-essential -y \
+    && pip install --no-cache-dir -U packages \
+    && pip install --no-cache-dir -U packages/plugins/nebulakit-deck-standard \
+    && pip install --no-cache-dir -U packages/plugins/nebulakit-k8s-pod \
+    && pip install --no-cache-dir -U scikit-learn \
+    && apt-get clean autoclean \
+    && apt-get autoremove --yes \
+    && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
+    && useradd -u 1000 nebulakit \
+    && chown nebulakit: /root \
+    && chown nebulakit: /home \
+    && :
+
+USER nebulakit
+
+ENV NEBULA_INTERNAL_IMAGE "$DOCKER_IMAGE"
