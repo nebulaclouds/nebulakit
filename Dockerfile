@@ -18,21 +18,22 @@ ARG DOCKER_IMAGE
 #RUN jf pipc --global --repo-resolve="nebula-pypi"
 #RUN jf pip install nebulakit
 
-COPY ./ packages/
+#COPY ./ packages/
+RUN --mount=type=ssh,id=default pip install nebulakit
 
-RUN apt-get update && apt-get install build-essential -y \
-    && pip install --no-cache-dir packages \
-    && pip install --no-cache-dir packages/plugins/nebulakit-deck-standard \
-    && pip install --no-cache-dir packages/plugins/nebulakit-k8s-pod \
-    && pip install --no-cache-dir scikit-learn \
-    && apt-get clean autoclean \
-    && apt-get autoremove --yes \
-    && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
-    && useradd -u 1000 nebulakit \
-    && chown nebulakit: /root \
-    && chown nebulakit: /home \
-    && :
-
-USER nebulakit
-
-ENV NEBULA_INTERNAL_IMAGE "$DOCKER_IMAGE"
+#RUN apt-get update && apt-get install build-essential -y \
+#    && pip install --no-cache-dir packages \
+#    && pip install --no-cache-dir packages/plugins/nebulakit-deck-standard \
+#    && pip install --no-cache-dir packages/plugins/nebulakit-k8s-pod \
+#    && pip install --no-cache-dir scikit-learn \
+#    && apt-get clean autoclean \
+#    && apt-get autoremove --yes \
+#    && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
+#    && useradd -u 1000 nebulakit \
+#    && chown nebulakit: /root \
+#    && chown nebulakit: /home \
+#    && :
+#
+#USER nebulakit
+#
+#ENV NEBULA_INTERNAL_IMAGE "$DOCKER_IMAGE"
