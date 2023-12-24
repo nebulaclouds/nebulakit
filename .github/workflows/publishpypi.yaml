@@ -2,7 +2,7 @@ name: "Build & Publish Artifacts"
 on:
   push:
     branches:
-      - master
+      - feature
 
 jobs:
   deploy:
