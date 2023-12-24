@@ -19,7 +19,12 @@ ARG DOCKER_IMAGE
 #RUN jf pip install nebulakit
 
 #COPY ./ packages/
-RUN --mount=type=ssh,id=default pip install nebulakit
+#RUN --mount=type=ssh,id=default pip install nebulakit
+
+RUN pip install --user --upgrade \
+    --index https://githubactions:cmVmdGtuOjAxOjE3MzQ5NzM0MTY6Mk9jSXRvNktic2FicmNnQmJreU5jMTNCQUdt@streamlineio.jfrog.io/artifactory/api/pypi/nebula-pypi/simple \
+    --extra-index-url https://pypi.python.org/simple \
+    nebulakit
 
 #RUN apt-get update && apt-get install build-essential -y \
 #    && pip install --no-cache-dir packages \
