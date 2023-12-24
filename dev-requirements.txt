@@ -124,7 +124,7 @@ filelock==3.13.1
     # via virtualenv
 flatbuffers==23.5.26
     # via tensorflow
-nebulaidl==1.1.0
+nebulaidl
     # via nebulakit
 frozenlist==1.4.0
     # via
