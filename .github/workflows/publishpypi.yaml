@@ -103,21 +103,21 @@ jobs:
 
 #        docker tag <IMAGE_ID> streamlineio.jfrog.io/nebula-docker/<DOCKER_IMAGE>:<DOCKER_TAG>
 #        docker push streamlineio.jfrog.io/nebula-docker/<DOCKER_IMAGE>:<DOCKER_TAG>
-#
-#      - name: Build & Push Nebulakit Python${{ matrix.python-version }} Docker Image to Github Registry
-#        uses: docker/build-push-action@v2
-#        with:
-#          context: .
-#          platforms: linux/arm64, linux/amd64
+
+      - name: Build & Push Nebulakit Python${{ matrix.python-version }} Docker Image to Jfrog
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: linux/arm64, linux/amd64
 #          push: ${{ github.event_name == 'release' }}
-#          tags: ${{ steps.nebulakit-names.outputs.tags }}
-#          build-args: |
-#            VERSION=${{ needs.deploy.outputs.version }}
-#            DOCKER_IMAGE=streamlineio.jfrog.io/nebula-docker/nebulakit:py${{ matrix.python-version }}-${{ needs.deploy.outputs.version }}
-#            PYTHON_VERSION=${{ matrix.python-version }}
-#          file: Dockerfile
-#          cache-from: type=gha
-#          cache-to: type=gha,mode=max
+          tags: ${{ steps.nebulakit-names.outputs.tags }}
+          build-args: |
+            VERSION=${{ needs.deploy.outputs.version }}
+            DOCKER_IMAGE=streamlineio.jfrog.io/nebula-docker/nebulakit:py${{ matrix.python-version }}-${{ needs.deploy.outputs.version }}
+            PYTHON_VERSION=${{ matrix.python-version }}
+          file: Dockerfile
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 #
 #      - name: Prepare SQLAlchemy Image Names
 #        id: sqlalchemy-names
