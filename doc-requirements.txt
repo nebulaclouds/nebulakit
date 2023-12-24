@@ -1227,7 +1227,7 @@ tensorflow-estimator==2.15.0
     # via tensorflow-macos
 tensorflow-io-gcs-filesystem==0.34.0
     # via tensorflow-macos
-tensorflow-macos==2.15.0
+tensorflow-macos
     # via tensorflow
 termcolor==2.4.0
     # via tensorflow-macos
