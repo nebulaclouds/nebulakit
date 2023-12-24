@@ -14,7 +14,9 @@ RUN apt-get update
 RUN apt-get dist-upgrade -y
 RUN apt-get install -y curl
 RUN curl -fL https://install-cli.jfrog.io | sh
+RUN jf pipc --global --repo-resolve="nebula-pypi"
 RUN jf pip install nebulakit
+
 
 #RUN apt-get update && apt-get install build-essential -y \
 #    && pip install --no-cache-dir -U nebulakit \
