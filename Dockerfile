@@ -12,14 +12,6 @@ ARG DOCKER_IMAGE
 ARG JFROG_USER
 ARG JFROG_PASSWORD
 
-#RUN apt-get update
-#RUN apt-get dist-upgrade -y
-#RUN apt-get install -y curl rsync
-#RUN curl -fL https://install-cli.jfrog.io | sh
-
-#RUN jf pipc --global --repo-resolve="nebula-pypi"
-#RUN jf pip install nebulakit
-
 RUN apt-get update && apt-get install build-essential -y \
     && pip install --no-cache-dir -U \
       --index https://$JFROG_USER:$JFROG_PASSWORD@streamlineio.jfrog.io/artifactory/api/pypi/nebula-pypi/simple \

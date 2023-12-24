@@ -74,8 +74,8 @@ jobs:
     needs: deploy
     strategy:
       matrix:
-        python-version: ["3.9"]
-#        python-version: ["3.8", "3.9", "3.10", "3.11"]
+#        python-version: ["3.9"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -112,6 +112,7 @@ jobs:
         with:
           context: .
           platforms: linux/arm64, linux/amd64
+          push: true
 #          push: ${{ github.event_name == 'release' }}
           tags: ${{ steps.nebulakit-names.outputs.tags }}
           build-args: |
