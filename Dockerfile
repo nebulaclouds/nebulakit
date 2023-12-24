@@ -18,7 +18,8 @@ RUN curl -fL https://install-cli.jfrog.io | sh
 #RUN jf pipc --global --repo-resolve="nebula-pypi"
 #RUN jf pip install nebulakit
 
-RUN rsync -av --exclude='packages/' ./ packages/
+COPY ./ packages/
+RUN #rsync -av --exclude='packages/' ./ packages/
 RUN ls -la packages/
 
 #RUN apt-get update && apt-get install build-essential -y \
