@@ -10,6 +10,7 @@ ENV PYTHONPATH /root
 ARG VERSION
 ARG DOCKER_IMAGE
 
+RUN apt install curl
 RUN curl -fL https://install-cli.jfrog.io | sh
 RUN #jfrog rt
 
