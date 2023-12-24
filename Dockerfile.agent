@@ -4,16 +4,21 @@ MAINTAINER Nebula Team <users@nebula.org>
 LABEL org.opencontainers.image.source=https://github.com/nebulaclouds/nebulakit
 
 ARG VERSION
+ARG JFROG_USER
+ARG JFROG_PASSWORD
 
 RUN apt-get update && apt-get install build-essential -y
 
 RUN pip install prometheus-client
-RUN pip install --no-cache-dir -U nebulakit==$VERSION \
-  nebulakitplugins-bigquery==$VERSION \
-  nebulakitplugins-airflow==$VERSION \
-  nebulakitplugins-mmcloud==$VERSION \
-  nebulakitplugins-spark==$VERSION \
-  nebulakitplugins-snowflake==$VERSION \
+RUN pip install --no-cache-dir -U\
+  --index https://$JFROG_USER:$JFROG_PASSWORD@streamlineio.jfrog.io/artifactory/api/pypi/nebula-pypi/simple \
+  --extra-index-url https://pypi.python.org/simple \
+  nebulakit \
+  nebulakitplugins-bigquery \
+  nebulakitplugins-airflow\
+  nebulakitplugins-mmcloud\
+  nebulakitplugins-spark \
+  nebulakitplugins-snowflake\
   && apt-get clean autoclean \
   && apt-get autoremove --yes \
   && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
