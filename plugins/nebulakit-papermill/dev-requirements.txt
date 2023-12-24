@@ -93,12 +93,12 @@ docker-image-py==0.1.12
     # via nebulakit
 docstring-parser==0.15
     # via nebulakit
-nebulaidl==1.0.0
+nebulaidl
     # via
     #   -r dev-requirements.in
     #   nebulakit
     #   nebulakitplugins-spark
-nebulakit==1.10.1
+nebulakit
     # via
     #   nebulakitplugins-awsbatch
     #   nebulakitplugins-pod

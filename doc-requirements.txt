@@ -676,7 +676,7 @@ nbformat==5.9.2
     #   nbclient
     #   nbconvert
     #   papermill
-nebulaidl==1.0.0
+nebulaidl
     # via nebulakit
 nest-asyncio==1.5.8
     # via
