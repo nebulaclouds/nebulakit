@@ -10,10 +10,10 @@ ENV PYTHONPATH /root
 ARG VERSION
 ARG DOCKER_IMAGE
 
-RUN apt-get update
-RUN apt-get dist-upgrade -y
-RUN apt-get install -y curl rsync
-RUN curl -fL https://install-cli.jfrog.io | sh
+#RUN apt-get update
+#RUN apt-get dist-upgrade -y
+#RUN apt-get install -y curl rsync
+#RUN curl -fL https://install-cli.jfrog.io | sh
 
 #RUN jf pipc --global --repo-resolve="nebula-pypi"
 #RUN jf pip install nebulakit
@@ -21,10 +21,10 @@ RUN curl -fL https://install-cli.jfrog.io | sh
 COPY ./ packages/
 
 RUN apt-get update && apt-get install build-essential -y \
-    && pip install --no-cache-dir -U packages \
-    && pip install --no-cache-dir -U packages/plugins/nebulakit-deck-standard \
-    && pip install --no-cache-dir -U packages/plugins/nebulakit-k8s-pod \
-    && pip install --no-cache-dir -U scikit-learn \
+    && pip install --no-cache-dir packages \
+    && pip install --no-cache-dir packages/plugins/nebulakit-deck-standard \
+    && pip install --no-cache-dir packages/plugins/nebulakit-k8s-pod \
+    && pip install --no-cache-dir scikit-learn \
     && apt-get clean autoclean \
     && apt-get autoremove --yes \
     && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
