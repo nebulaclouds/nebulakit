@@ -18,9 +18,6 @@ RUN pip install --no-cache-dir -U \
       --extra-index-url https://pypi.python.org/simple \
       nebulakit nebulakitplugins-sqlalchemy
 
-#		nebulakitplugins-sqlalchemy==$VERSION \
-#		nebulakit==$VERSION
-
 RUN useradd -u 1000 nebulakit
 RUN chown nebulakit: /root
 USER nebulakit
