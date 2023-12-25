@@ -27,7 +27,6 @@ jobs:
         id: sphinx-warnings
         run: |
           sudo apt-get install python3-sphinx  
-          python -m pip install tensorflow-macos
           pip install \
             --extra-index-url https://${{ secrets.JFROG_USER}}:${{ secrets.JFROG_PASSWORD }}@streamlineio.jfrog.io/artifactory/api/pypi/nebula-pypi/simple \
             --index https://pypi.python.org/simple \
