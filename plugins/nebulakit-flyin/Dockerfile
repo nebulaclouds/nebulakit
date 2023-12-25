@@ -21,7 +21,7 @@ RUN apt-get update \
     && pip install --no-cache-dir -U \
       --index https://$JFROG_USER:$JFROG_PASSWORD@streamlineio.jfrog.io/artifactory/api/pypi/nebula-pypi/simple \
       --extra-index-url https://pypi.python.org/simple \
-      nebulakit-flyin nebulakit \
+      nebulakitplugins-flyin nebulakit \
     && apt-get clean autoclean \
     && apt-get autoremove --yes \
     && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
@@ -30,7 +30,6 @@ RUN apt-get update \
     && chown nebulakit: /home \
     && :
 
-# Set the environment variable for code-server
 ENV PATH="/tmp/code-server/code-server-4.19.0-linux-${TARGETARCH}/bin:${PATH}"
 
 USER nebulakit
