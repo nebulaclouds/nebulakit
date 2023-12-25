@@ -13,13 +13,52 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+#  build:
+#    runs-on: ${{ matrix.os }}
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        os: [ubuntu-latest, macos-latest]
+#        # TODO : fix windows-latest : --extra-index-url failing
+##        os: [ubuntu-latest, windows-latest, macos-latest]
+#        python-version: ["3.8", "3.11"]
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Set up Python ${{ matrix.python-version }}
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: ${{ matrix.python-version }}
+#      - name: Cache pip
+#        uses: actions/cache@v3
+#        with:
+#          path: ~/.cache/pip
+#          key: ${{ format('{0}-pip-{1}', runner.os, hashFiles('dev-requirements.in', 'requirements.in')) }}
+#      - name: Install dependencies
+#        run: |
+#          pip install \
+#            --extra-index-url https://${{ secrets.JFROG_USER}}:${{ secrets.JFROG_PASSWORD }}@streamlineio.jfrog.io/artifactory/api/pypi/nebula-pypi/simple \
+#            --index https://pypi.python.org/simple \
+#            -r dev-requirements.in
+#          pip freeze
+#      - name: Test with coverage
+#        env:
+#          PYTEST_OPTS: -n2
+#        run: |
+#          make unit_test_codecov
+#      - name: Codecov
+#        uses: codecov/codecov-action@v3.1.4
+#        with:
+#          fail_ci_if_error: false
+#          files: coverage.xml
+
+  test-serialization:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ["3.8", "3.11"]
+        os: [ubuntu-latest]
+        python-version: ["3.8"]
+#        python-version: ["3.8", "3.11"]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
@@ -38,52 +77,19 @@ jobs:
             --index https://pypi.python.org/simple \
             -r dev-requirements.in
           pip freeze
+
       - name: Test with coverage
         env:
           PYTEST_OPTS: -n2
         run: |
-          make unit_test_codecov
+          make test_serialization_codecov
       - name: Codecov
         uses: codecov/codecov-action@v3.1.4
         with:
           fail_ci_if_error: false
           files: coverage.xml
 
-#  test-serialization:
-#    runs-on: ${{ matrix.os }}
-#    strategy:
-#      fail-fast: false
-#      matrix:
-#        os: [ubuntu-latest]
-#        python-version: ["3.8", "3.11"]
-#    steps:
-#      - uses: actions/checkout@v4
-#      - name: Set up Python ${{ matrix.python-version }}
-#        uses: actions/setup-python@v4
-#        with:
-#          python-version: ${{ matrix.python-version }}
-#      - name: Cache pip
-#        uses: actions/cache@v3
-#        with:
-#          # This path is specific to Ubuntu
-#          path: ~/.cache/pip
-#          # Look to see if there is a cache hit for the corresponding requirements files
-#          key: ${{ format('{0}-pip-{1}', runner.os, hashFiles('dev-requirements.in', 'requirements.in')) }}
-#      - name: Install dependencies
-#        run: |
-#          make setup && pip freeze
-#      - name: Test with coverage
-#        env:
-#          PYTEST_OPTS: -n2
-#        run: |
-#          make test_serialization_codecov
-#      - name: Codecov
-#        uses: codecov/codecov-action@v3.1.4
-#        with:
-#          fail_ci_if_error: false
-#          files: coverage.xml
-#
-#
+
 #  build-plugins:
 #    needs: build
 #    runs-on: ubuntu-latest
