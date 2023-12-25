@@ -1,0 +1,237 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  NEBULA_SDK_LOGGING_LEVEL: 10 # debug
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.8", "3.11"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ format('{0}-pip-{1}', runner.os, hashFiles('dev-requirements.in', 'requirements.in')) }}
+      - name: Install dependencies
+        run: |
+          pip install \
+            --extra-index-url https://${{ secrets.JFROG_USER}}:${{ secrets.JFROG_PASSWORD }}@streamlineio.jfrog.io/artifactory/api/pypi/nebula-pypi/simple \
+            --index https://pypi.python.org/simple \
+            -r dev-requirements.in
+          pip freeze
+      - name: Test with coverage
+        env:
+          PYTEST_OPTS: -n2
+        run: |
+          make unit_test_codecov
+      - name: Codecov
+        uses: codecov/codecov-action@v3.1.4
+        with:
+          fail_ci_if_error: false
+          files: coverage.xml
+
+#  test-serialization:
+#    runs-on: ${{ matrix.os }}
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        os: [ubuntu-latest]
+#        python-version: ["3.8", "3.11"]
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Set up Python ${{ matrix.python-version }}
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: ${{ matrix.python-version }}
+#      - name: Cache pip
+#        uses: actions/cache@v3
+#        with:
+#          # This path is specific to Ubuntu
+#          path: ~/.cache/pip
+#          # Look to see if there is a cache hit for the corresponding requirements files
+#          key: ${{ format('{0}-pip-{1}', runner.os, hashFiles('dev-requirements.in', 'requirements.in')) }}
+#      - name: Install dependencies
+#        run: |
+#          make setup && pip freeze
+#      - name: Test with coverage
+#        env:
+#          PYTEST_OPTS: -n2
+#        run: |
+#          make test_serialization_codecov
+#      - name: Codecov
+#        uses: codecov/codecov-action@v3.1.4
+#        with:
+#          fail_ci_if_error: false
+#          files: coverage.xml
+#
+#
+#  build-plugins:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        python-version: ["3.8", "3.11"]
+#        plugin-names:
+#          # Please maintain an alphabetical order in the following list
+#          - nebulakit-airflow
+#          - nebulakit-aws-athena
+#          - nebulakit-aws-batch
+#          # - nebulakit-aws-sagemaker
+#          - nebulakit-bigquery
+#          - nebulakit-dask
+#          - nebulakit-data-fsspec
+#          - nebulakit-dbt
+#          - nebulakit-deck-standard
+#          - nebulakit-dolt
+#          - nebulakit-duckdb
+#          - nebulakit-envd
+#          - nebulakit-greatexpectations
+#          - nebulakit-hive
+#          - nebulakit-huggingface
+#          - nebulakit-k8s-pod
+#          - nebulakit-kf-mpi
+#          - nebulakit-kf-pytorch
+#          - nebulakit-kf-tensorflow
+#          - nebulakit-mlflow
+#          - nebulakit-modin
+#          - nebulakit-onnx-pytorch
+#          - nebulakit-onnx-scikitlearn
+#          # onnx-tensorflow needs a version of tensorflow that does not work with protobuf>4.
+#          # nebulakit-onnx-tensorflow
+#          - nebulakit-pandera
+#          - nebulakit-papermill
+#          - nebulakit-polars
+#          - nebulakit-ray
+#          - nebulakit-snowflake
+#          - nebulakit-spark
+#          - nebulakit-sqlalchemy
+#          - nebulakit-vaex
+#          - nebulakit-flyin
+#          - nebulakit-whylogs
+#        exclude:
+#          # nebulakit-modin depends on ray which does not have a 3.11 wheel yet.
+#          - python-version: 3.11
+#            plugin-names: "nebulakit-modin"
+#          - python-version: 3.11
+#            plugin-names: "nebulakit-ray"
+#          # Great-expectations does not support python 3.11 due to sqlachemy>=2.0.0
+#          - python-version: 3.11
+#            plugin-names: "nebulakit-greatexpectations"
+#          # onnxruntime does not support python 3.10 yet
+#          - python-version: 3.11
+#            plugin-names: "nebulakit-onnx-pytorch"
+#          - python-version: 3.11
+#            plugin-names: "nebulakit-onnx-scikitlearn"
+#          - python-version: 3.11
+#            plugin-names: "nebulakit-onnx-tensorflow"
+#          # numba, a dependency of mlflow, doesn't support python 3.11
+#          - python-version: 3.11
+#            plugin-names: "nebulakit-mlflow"
+#          # vaex currently doesn't support python 3.11
+#          - python-version: 3.11
+#            plugin-names: "nebulakit-vaex"
+#          # whylogs does support python 3.11 dataclass restrictions
+#          - python-version: 3.11
+#            plugin-names: "nebulakit-whylogs"
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Set up Python ${{ matrix.python-version }}
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: ${{ matrix.python-version }}
+#      - name: Cache pip
+#        uses: actions/cache@v3
+#        with:
+#          # This path is specific to Ubuntu
+#          path: ~/.cache/pip
+#          # Look to see if there is a cache hit for the corresponding requirements files
+#          key: ${{ format('{0}-pip-{1}', runner.os, hashFiles('dev-requirements.txt', format('plugins/{0}/requirements.txt', matrix.plugin-names ))) }}
+#      - name: Install dependencies
+#        run: |
+#          make setup
+#          cd plugins/${{ matrix.plugin-names }}
+#          pip install .
+#          if [ -f dev-requirements.txt ]; then pip install -r dev-requirements.txt; fi
+#          pip install -U $GITHUB_WORKSPACE
+#          pip freeze
+#      - name: Test with coverage
+#        run: |
+#          cd plugins/${{ matrix.plugin-names }}
+#          # onnx plugins does not support protobuf>4 yet (in fact it is tensorflow that
+#          # does not support that yet). More details in https://github.com/onnx/onnx/issues/4239.
+#          if [[ ${{ matrix.plugin-names }} == *"onnx"* || ${{ matrix.plugin-names }} == "nebulakit-whylogs" || ${{ matrix.plugin-names }} == "nebulakit-mlflow" ]]; then
+#             PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python coverage run -m pytest tests --cov=./ --cov-report=xml --cov-append
+#          else
+#             coverage run -m pytest tests --cov=./ --cov-report=xml --cov-append
+#          fi
+#      - name: Codecov
+#        uses: codecov/codecov-action@v3.1.0
+#        with:
+#          fail_ci_if_error: false
+#
+#
+#  lint:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Fetch the code
+#        uses: actions/checkout@v4
+#      - name: Set up Python 3.8
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: 3.8
+#      - uses: actions/cache@v3
+#        with:
+#          path: ~/.cache/pip
+#          key: ${{ runner.os }}-pip-${{ hashFiles('**/dev-requirements.in') }}
+#          restore-keys: |
+#            ${{ runner.os }}-pip-
+#      - name: Install dependencies
+#        run: |
+#          python -m pip install --upgrade pip
+#          pip install -r dev-requirements.in
+#      - name: Lint
+#        run: |
+#          make lint
+#      - name: ShellCheck
+#        uses: ludeeus/action-shellcheck@master
+#        with:
+#          ignore_paths: boilerplate
+#
+#
+#  docs:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Fetch the code
+#        uses: actions/checkout@v3
+#      - name: Set up Python 3.9
+#        uses: actions/setup-python@v4
+#        with:
+#          python-version: 3.9
+#      - name: Install dependencies
+#        run: |
+#          python -m pip install --upgrade pip==21.2.4 setuptools wheel
+#          pip install -r doc-requirements.txt
+#      - name: Build the documentation
+#        run: |
+#          # TODO: Remove after buf migration is done and packages updated
+#          PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python make -C docs html
