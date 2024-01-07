@@ -77,7 +77,6 @@ jobs:
             --index https://pypi.python.org/simple \
             -r dev-requirements.in
           pip freeze
-
       - name: Test with coverage
         env:
           PYTEST_OPTS: -n2
