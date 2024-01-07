@@ -1,10 +1,20 @@
 name: Build
 
-on:
+#on:
 #  push:
 #    branches:
 #      - master
-  pull_request:
+on:
+  workflow_dispatch:
+    inputs:
+      push:
+        description: "Push to pypi"
+        required: false
+        type: boolean
+      before-build:
+        description: "Script to run before build"
+        required: false
+        type: string
 
 env:
   NEBULA_SDK_LOGGING_LEVEL: 10 # debug
